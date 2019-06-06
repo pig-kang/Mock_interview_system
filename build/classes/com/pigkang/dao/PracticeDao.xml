@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pigkang.dao.PracticeDao">
+	<!--根据id查询习题信息 -->
+	<select id="findPracticeById" parameterType="Integer"
+		resultType="Practice">
+		select * from practice where pra_id = #{id}
+	</select>
+	
+	<!-- 查询前十条习题内容 -->
+	<select id="findPracticeTen" resultType="Practice">
+		select * from practice limit 0,10
+	</select>
+	
+	<!-- 根据关键词搜索习题 -->
+	<select id="seekPractice" parameterType="String"
+		resultType="Practice">
+		select * from practice where pra_topic like concat("%",#{text},"%") limit 10;
+	</select>
+</mapper>
